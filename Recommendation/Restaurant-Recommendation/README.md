@@ -116,30 +116,18 @@ Add real-time recommendation capability
 
 📁 Project Structure
 
-restaurant-recommendation/
+Restaurant-Recommendation 
 
-│
-├── data/
+1.Train Data 
+     1. vendors
+     2. orders
+     3. train_customers
+     4. train_locations
 
-│   ├── train_customers.csv
-
-│   ├── train_locations.csv
-
-│   ├── train_orders.csv
-
-│   └── vendors.csv
-│
-├── notebooks/
-│   ├── data_cleaning.ipynb
-│   ├── feature_engineering.ipynb
-│   └── modeling.ipynb
-│
-├── images/
-│   └── charts_and_graphs.png
-│
-├── requirements.txt
-└── README.md
-
+2.Test Data
+    1. test_customers
+    2. test_location
+    
 📬 Author
 
 Ragipati Sireesha
