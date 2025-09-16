@@ -15,6 +15,7 @@ train_orders — Order history and transaction details
 vendors — Information about available restaurants/vendors
 
 🧹 Data Cleaning & Preprocessing
+
 ✅ train_customers
 
 Removed duplicate customer_id entries
@@ -114,6 +115,7 @@ Deploy as a simple web app (Streamlit or Flask)
 Add real-time recommendation capability
 
 📁 Project Structure
+
 restaurant-recommendation/
 │
 ├── data/
