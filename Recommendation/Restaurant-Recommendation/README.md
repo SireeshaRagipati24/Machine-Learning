@@ -15,7 +15,7 @@ train_orders — Order history and transaction details
 
 vendors — Information about available restaurants/vendors
 
-🧹 Data Cleaning & Preprocessing
+**Data Cleaning & Preprocessing**
 
 ✅ train_customers
 
