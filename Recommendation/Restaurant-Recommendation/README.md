@@ -119,12 +119,14 @@ Add real-time recommendation capability
 Restaurant-Recommendation 
 
 1.Train Data 
+
      1. vendors
      2. orders
      3. train_customers
      4. train_locations
 
 2.Test Data
+
     1. test_customers
     2. test_location
     
