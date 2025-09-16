@@ -110,8 +110,6 @@ Matplotlib / Seaborn (for EDA)
 
 Implement model evaluation using Precision@K / Recall@K
 
-Deploy as a simple web app (Streamlit or Flask)
-
 Add real-time recommendation capability
 
 📁 Project Structure
