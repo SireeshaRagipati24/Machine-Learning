@@ -117,11 +117,16 @@ Add real-time recommendation capability
 📁 Project Structure
 
 restaurant-recommendation/
+
 │
 ├── data/
+
 │   ├── train_customers.csv
+
 │   ├── train_locations.csv
+
 │   ├── train_orders.csv
+
 │   └── vendors.csv
 │
 ├── notebooks/
