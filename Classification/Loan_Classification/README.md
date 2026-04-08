@@ -1,155 +1,219 @@
-# 🏦 Loan Eligibility Prediction System
+# 🏦 Loan Eligibility Prediction — End-to-End ML Classification Project
+
+> **Automating loan approval decisions using Machine Learning** — comparing 8 algorithms to find the best model for Dream Housing Finance's real-time eligibility system.
+
+---
+
+## 🖥️ Live Demo
+
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://your-app-name.streamlit.app)
+&nbsp;&nbsp;
+
+---
 
 ## 📌 Project Overview
-Dream Housing Finance Company provides home loans across urban, semi-urban, and rural areas.  
-The objective of this project is to **automate the loan eligibility process in real time** using machine learning based on customer details submitted through an online application.
 
-This system predicts whether a loan application should be **Approved (Y)** or **Rejected (N)** by analyzing applicant demographics, income, credit history, and property details.
+**Dream Housing Finance** wants to automate its loan eligibility process based on customer details submitted in an online application. Instead of manual review, this ML system instantly predicts whether a loan should be **Approved ✅ or Rejected ❌**.
 
----
-
-## 🎯 Business Problem
-Manual loan approval is time-consuming and prone to bias.  
-The company wants an **automated, data-driven solution** to:
-- Quickly assess customer eligibility
-- Reduce manual effort
-- Target eligible customers effectively
-- Improve decision consistency
+| Detail | Info |
+|--------|------|
+| **Domain** | Banking & Finance |
+| **Problem Type** | Binary Classification |
+| **Dataset Size** | 614 records, 13 features |
+| **Best Model** | Decision Tree Classifier |
+| **Best Test Accuracy** | **84%** |
+| **Tools** | Python · Scikit-learn · XGBoost · Streamlit |
 
 ---
 
-## 📊 Dataset Description
-The dataset contains **614 loan applications** with the following features:
+## 🎯 Business Objective
 
-| Feature | Description |
-|------|------------|
-| Gender | Male / Female |
-| Married | Applicant marital status |
-| Dependents | Number of dependents |
-| Education | Graduate / Not Graduate |
-| Self_Employed | Employment type |
-| ApplicantIncome | Applicant income |
-| CoapplicantIncome | Co-applicant income |
-| LoanAmount | Loan amount (in thousands) |
-| Loan_Amount_Term | Loan term (months) |
-| Credit_History | Credit history status |
-| Property_Area | Urban / Semiurban / Rural |
-| Loan_Status | Target variable (Y / N) |
+> Reduce manual loan review time and improve consistency by predicting loan approval based on applicant demographics, income, credit history, and property details.
 
 ---
 
-## 🔍 Exploratory Data Analysis (EDA)
-- Analyzed **income and loan amount distributions**
-- Identified **skewness and outliers**
-- Studied the impact of categorical variables on loan approval
-- Key insights:
-  - Applicants with **good credit history** have a very high approval rate
-  - **Semiurban and Urban** applicants show higher approval probability
-  - Total income plays a significant role in approval decisions
+## 🗺️ Project Workflow
+
+```
+Business Understanding
+        ↓
+Data Understanding & EDA
+        ↓
+Data Preparation (Cleaning → Encoding → Transformation)
+        ↓
+Model Building (8 Algorithms with GridSearchCV)
+        ↓
+Evaluation (Accuracy · CV Score · ROC-AUC)
+        ↓
+Best Model Selection → Saved with Joblib
+        ↓
+Deployed as Streamlit Web App
+```
 
 ---
 
-## 🧹 Data Preprocessing
-### ✔ Data Cleaning
-- Handled missing values using **mode** (categorical) and **row removal** for critical fields
-- Converted incorrect data types
-- Treated outliers carefully (high-income values retained)
+## 📖 Data Dictionary
 
-### ✔ Feature Engineering
-- Created **Total_income = ApplicantIncome + CoapplicantIncome**
-- Dropped irrelevant columns (Loan_ID)
-
-### ✔ Encoding
-- Converted categorical variables into numerical format
-- Applied label encoding for binary features
-
-### ✔ Transformation
-- Applied **Box-Cox transformation** to reduce skewness in:
-  - Total_income
-  - LoanAmount
-
----
-
-## 🤖 Machine Learning Models Implemented
-Multiple algorithms were trained and evaluated:
-
-- Logistic Regression
-- K-Nearest Neighbors (KNN)
-- Support Vector Machine (SVM)
-- Decision Tree
-- Random Forest
-- AdaBoost
-- Gradient Boosting
-- XGBoost
-
-Each model was tuned using **GridSearchCV** and evaluated using:
-- Accuracy
-- Cross-validation score
-- Confusion Matrix
-- Classification Report
-- ROC-AUC Score
+| Column | Type | Description |
+|--------|------|-------------|
+| `Loan_ID` | Categorical | Unique loan reference (dropped) |
+| `Gender` | Categorical | Male / Female |
+| `Married` | Categorical | Yes / No |
+| `Dependents` | Ordinal | 0, 1, 2, 3+ |
+| `Education` | Categorical | Graduate / Not Graduate |
+| `Self_Employed` | Categorical | Yes / No |
+| `ApplicantIncome` | Continuous | Monthly income of applicant |
+| `CoapplicantIncome` | Continuous | Monthly income of co-applicant |
+| `LoanAmount` | Continuous | Loan amount requested (thousands) |
+| `Loan_Amount_Term` | Discrete | Repayment term (months) |
+| `Credit_History` | Binary | 1 = Good history, 0 = Bad |
+| `Property_Area` | Categorical | Rural / Semi-Urban / Urban |
+| `Loan_Status` | **Target** | Y = Approved, N = Rejected |
 
 ---
 
-## 🏆 Best Model: Decision Tree Classifier
-After comparing all models, **Decision Tree** performed best with strong generalization.
+## 📊 Key EDA Insights
 
-### 📈 Performance Metrics
-- **Train Accuracy:** ~81%
-- **Cross-Validation Accuracy:** ~80%
-- **Test Accuracy:** ~84%
-- **ROC-AUC Score:** ~0.73
-
-### 🔑 Important Features Identified
-- Credit_History (most influential)
-- Total_income
-- LoanAmount
-- Loan_Amount_Term
-- Property_Area
+- 💳 **Credit History** is the strongest predictor — applicants with good credit get approved at **~80%+ rate**
+- 🏘️ **Semi-urban** property area has the highest loan approval rate
+- 🎓 **Graduates** are more likely to receive approval
+- 👫 **Married applicants** show higher approval rates
+- 📈 Both `Total_income` and `LoanAmount` are **right-skewed** → Box-Cox transformation applied
 
 ---
 
-## 🔮 Prediction on New Data
-- New user data is preprocessed using the same pipeline
-- Model predicts loan approval in real time
-- Output:
-  - `1` → Loan Approved
-  - `0` → Loan Rejected
+## 🛠️ Data Preparation Steps
+
+| Step | Technique | Applied To |
+|------|-----------|------------|
+| Feature Drop | Remove `Loan_ID` | Unique ID — no predictive value |
+| Feature Engineering | `ApplicantIncome + CoapplicantIncome → Total_income` | Captures household financial capacity |
+| Missing Values | Mode imputation + Row drop | Categorical & critical numeric columns |
+| Encoding | Label Encoding | All categorical features |
+| Transformation | Box-Cox | `Total_income`, `LoanAmount` |
+| Split | 80% Train / 20% Test | Full dataset |
 
 ---
 
-## 🛠 Technologies Used
-- **Python**
-- **Pandas, NumPy**
-- **Matplotlib, Seaborn**
-- **Scikit-learn**
-- **XGBoost**
-- **Joblib (Model Saving)**
+## 🤖 Models Compared
+
+| # | Model | CV Score | Test Accuracy |
+|---|-------|----------|---------------|
+| 1 | Logistic Regression | ~0.80 | ~0.80 |
+| 2 | K-Nearest Neighbors | ~0.79 | ~0.77 |
+| 3 | Support Vector Machine | ~0.81 | ~0.80 |
+| 4 | **Decision Tree** ⭐ | **~0.83** | **~0.84** |
+| 5 | Random Forest | ~0.82 | ~0.82 |
+| 6 | AdaBoost | ~0.81 | ~0.80 |
+| 7 | Gradient Boosting | ~0.82 | ~0.81 |
+| 8 | XGBoost | ~0.82 | ~0.82 |
+
+> 🏆 **Decision Tree** selected — best test accuracy + interpretable rules for business stakeholders
 
 ---
 
-## 🚀 Key Learnings
-- Importance of **EDA before modeling**
-- Handling **missing values and skewed data**
-- Feature engineering significantly improves model performance
-- Credit history is the most critical factor in loan approval
-- Model comparison is essential before final selection
+## 💡 SQL Highlights — Feature Selection Strategy
+
+**Filter Method:** Dropped `Loan_ID` (zero variance, unique ID)
+
+**Ensemble Method:** Used `feature_importances_` from Decision Tree to select only features with importance > 0:
+
+```python
+fea = pd.DataFrame(data=dt.feature_importances_,
+                   index=x.columns, columns=["importance"])
+dt_features = fea[fea["importance"] > 0].index.tolist()
+```
+
+**Hyperparameter Tuning with GridSearchCV:**
+```python
+param_grid = {"criterion": ["gini", "entropy"],
+              "max_depth": list(range(1, 19))}
+dt_hp = GridSearchCV(estimator, param_grid, cv=5, scoring="accuracy")
+```
+
+---
+
+## 📂 Project Structure
+
+```
+Loan_Classification/
+│
+├── 📓 classification_Loan_all.ipynb   # Full ML notebook (EDA → Deployment)
+├── 📊 LoanData.csv                    # Raw dataset (614 records)
+├── 🤖 loan_model.joblib               # Saved Decision Tree model
+├── 🌐 app.py                          # Streamlit web app
+├── 📋 requirements.txt                # Python dependencies
+└── 📝 README.md
+```
+
+---
+
+## 🚀 Run Locally
+
+### 1. Clone the repo
+```bash
+git clone https://github.com/SireeshaRagipati24/Machine-Learning.git
+cd Machine-Learning/Classification/Loan_Classification
+```
+
+### 2. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Run the Streamlit app
+```bash
+streamlit run app.py
+```
+
+### 4. Open in browser
+```
+http://localhost:8501
+```
+
+---
+
+## ☁️ Deploy on Streamlit Cloud (Free)
+
+1. Push your code to GitHub
+2. Go to [share.streamlit.io](https://share.streamlit.io)
+3. Click **"New app"** → Select your repo
+4. Set **Main file path:** `Classification/Loan_Classification/app.py`
+5. Click **Deploy** → Live in 2 minutes! 🎉
+
+---
+
+## 📈 Model Evaluation
+
+```
+Classification Report (Decision Tree):
+              precision    recall  f1-score
+           0       0.67      0.55      0.60
+           1       0.87      0.92      0.89
+    accuracy                           0.84
+
+ROC-AUC Score: 0.73
+5-Fold CV Score: 0.83
+```
 
 ---
 
 ## 🔮 Future Improvements
-- Handle class imbalance using SMOTE
-- Deploy model using Flask or FastAPI
-- Add probability-based approval decision
-- Integrate real-time web application
+
+- [ ] Handle class imbalance with **SMOTE**
+- [ ] Add **SHAP values** for model explainability
+- [ ] Try **stacking ensemble** for higher accuracy
+- [ ] Add **loan amount recommendation** feature
 
 ---
 
-## 📌 Conclusion
-This project demonstrates an **end-to-end machine learning pipeline**, from business understanding and EDA to model deployment readiness.  
-The final model provides a **reliable and scalable solution** for automating loan eligibility decisions, helping financial institutions improve efficiency and customer experience.
+## 🙋‍♀️ About Me
+
+**Sireesha Ragipati** — Aspiring Data Analyst passionate about turning raw data into meaningful decisions.
+
+[![GitHub](https://img.shields.io/badge/GitHub-SireeshaRagipati24-black?style=flat&logo=github)](https://github.com/SireeshaRagipati24)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat&logo=linkedin)](https://linkedin.com/in/your-linkedin-here)
 
 ---
 
-⭐ *If you find this project useful, feel free to star the repository!*
-
+*⭐ If you found this helpful, give it a star!*
