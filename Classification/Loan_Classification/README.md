@@ -211,8 +211,8 @@ ROC-AUC Score: 0.73
 
 **Sireesha Ragipati** — Aspiring Data Analyst passionate about turning raw data into meaningful decisions.
 
-[![GitHub](https://img.shields.io/badge/GitHub-SireeshaRagipati24-black?style=flat&logo=github)](https://github.com/SireeshaRagipati24)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat&logo=linkedin)](https://linkedin.com/in/your-linkedin-here)
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sireesha-ragipati-269a10244/)
 
 ---
 
