@@ -6,7 +6,9 @@
 
 ## 🖥️ Live Demo
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://your-app-name.streamlit.app)
+## 🖥️ Live Demo
+
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://machine-learning-gjejrb9giurkzecexzappf3.streamlit.app/)
 &nbsp;&nbsp;
 
 ---
