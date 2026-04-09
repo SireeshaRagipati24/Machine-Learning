@@ -4,6 +4,14 @@
 
 ---
 
+## 🖥️ Website Preview
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/SireeshaRagipati24/Machine-Learning/main/Classification/Loan_Classification/Website_Preview.png" alt="Loan Predictor Preview" width="800">
+</p>
+
+---
+
 ## 🖥️ Live Demo
 
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://machine-learning-gjejrb9giurkzecexzappf3.streamlit.app/)
